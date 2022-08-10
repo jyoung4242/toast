@@ -13,14 +13,13 @@ const uiStringTemplate = `
     <div class="toast_container">
         <div  class="toast_entry" \${msg<=*messages} >
             <div class="toast_message" \${===msg.showing}>\${msg.msg}</div>
-            <div \${mouseover@=>msg.hover} \${mouseout@=>msg.leaving} class="toast_img_container bloom">
-                    <img class="toast_img" src="\${msg.img}" alt=""/>    
+            <div   class="toast_img_container bloom">
+                    <img \${mouseover@=>msg.hover} \${mouseout@=>msg.leaving} class="toast_img" src="\${msg.img}" alt=""/>    
             </div>
             <div data-id="\${msg.$index}" \${click@=>msg.close} class="toast_close">X</div>
         </div>
     </div>
     <button \${click@=>click}>Toast</button>
-   
   </div>
 `;
 
@@ -28,13 +27,14 @@ const model = {
   click: (event, model) => {
     let index = Math.floor(Math.random() * 5);
     let config = {
-      timeOut: 20000,
+      timeOut: 30000,
       isShowing: false,
       get showing() {
         return this.isShowing;
       },
-      hover: (event, model, element) => {
-        element.classList.remove("bloom");
+      hover: (event, model, element, _at, context) => {
+        const prnt = element.parentElement;
+        prnt.classList.remove("bloom");
         model.msg.isShowing = true;
       },
       leaving: (event, model, element) => {
