@@ -27,7 +27,7 @@ button {
   position: fixed;
   right: 0;
   top: 0;
-  width: 200px;
+  width: 210px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,6 @@ button {
   display: flex;
   margin-bottom: 25px;
   justify-content: flex-end;
-  animation: slide-in-from-right 0.75s;
 }
 
 .toast_entry.pui-adding {
@@ -96,13 +95,20 @@ button {
   flex-direction: column;
   justify-content: center;
   z-index: 2;
-  transition: width 0.2s ease-in-out;
   border: 5px solid;
   border-image: url("./assets/border.svg");
   border-image-slice: 25;
   border-radius: 5px;
   box-shadow: 5px 5px 5px black;
   color: white;
+}
+
+.toast_message.pui-adding {
+  animation: slide-in-from-right 0.6s;
+}
+
+.toast_message.pui-removing {
+  animation: slide-out-to-right 0.6s;
 }
 
 .toast_img {
@@ -113,6 +119,7 @@ button {
   bottom: 0;
   margin: auto;
   z-index: 3;
+  flex-shrink: 0;
 }
 
 .toast_img_container {
