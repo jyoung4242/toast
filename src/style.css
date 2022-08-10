@@ -42,8 +42,16 @@ button {
   justify-content: flex-end;
 }
 
+/* .toast_entry > .toast_message {
+  animation: slide-out-to-right 0.75s;
+} */
+
+.toast_entry:hover > .toast_message {
+  animation: slide-in-from-right 0.75s forwards;
+}
+
 .toast_entry.pui-adding {
-  animation: slide-in-from-right 0.75s;
+  animation: slide-in-from-right 0.75s forwards;
 }
 
 .toast_entry.pui-removing {
@@ -61,6 +69,7 @@ button {
   }
   100% {
     transform: translateX(0%);
+    opacity: 1;
   }
 }
 
@@ -81,6 +90,7 @@ button {
 }
 
 .toast_message {
+  order: 1;
   position: relative;
   top: 0;
   left: 0;
@@ -101,6 +111,8 @@ button {
   border-radius: 5px;
   box-shadow: 5px 5px 5px black;
   color: white;
+  opacity: 0;
+  transform: translateX(200%);
 }
 
 .toast_message.pui-adding {
@@ -123,6 +135,7 @@ button {
 }
 
 .toast_img_container {
+  order: 2;
   border: 2px solid white;
   border-radius: 50%;
   min-width: 40px;
@@ -135,6 +148,7 @@ button {
 }
 
 .toast_close {
+  order: 3;
   position: relative;
   right: 0;
   top: 0;
@@ -147,11 +161,12 @@ button {
   font-family: demonFont;
   font-size: large;
   transition: color 0.3s;
+  z-index: 4;
 }
 .toast_close:hover {
   color: red;
 }
 
 .bloom {
-  box-shadow: 0px 0px 8px 1px white;
+  box-shadow: 0px 0px 8px 3px white;
 }

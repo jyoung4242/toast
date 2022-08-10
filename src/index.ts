@@ -12,11 +12,11 @@ const uiStringTemplate = `
   <div class="container">
     <div class="toast_container">
         <div  class="toast_entry" \${msg<=*messages} >
-            <div class="toast_message" \${===msg.showing}>\${msg.msg}</div>
-            <div   class="toast_img_container bloom">
+            <div id="elm_\${msg.$index}"  class="toast_img_container bloom">
                     <img \${mouseover@=>msg.hover} \${mouseout@=>msg.leaving} class="toast_img" src="\${msg.img}" alt=""/>    
             </div>
-            <div data-id="\${msg.$index}" \${click@=>msg.close} class="toast_close">X</div>
+            <div  class="toast_message">\${msg.msg}</div>
+            <div \${click@=>msg.close} class="toast_close">X</div>
         </div>
     </div>
     <button \${click@=>click}>Toast</button>
@@ -27,18 +27,14 @@ const model = {
   click: (event, model) => {
     let index = Math.floor(Math.random() * 5);
     let config = {
-      timeOut: 30000,
-      isShowing: false,
-      get showing() {
-        return this.isShowing;
-      },
+      timeOut: 5000,
       hover: (event, model, element, _at, context) => {
         const prnt = element.parentElement;
         prnt.classList.remove("bloom");
-        model.msg.isShowing = true;
+        // model.msg.isShowing = true;
       },
       leaving: (event, model, element) => {
-        model.msg.isShowing = false;
+        //model.msg.isShowing = false;
       },
       close: (_event, model, _element, _at, context) => {
         context.$parent.$model.messages = context.$parent.$model.messages.filter(m => m !== model.msg);
@@ -85,7 +81,8 @@ setInterval(() => {
   const numMessages = model.messages.length;
   if (numMessages > 0) {
     for (let index = numMessages - 1; index >= 0; index--) {
-      if (!model.messages[index].isShowing) {
+      let elm = document.getElementById(`elm_${index}`);
+      if (!isHover(elm)) {
         model.messages[index].timeOut -= 500;
         if (model.messages[index].timeOut <= 0) {
           model.messages.splice(index, 1);
@@ -94,3 +91,5 @@ setInterval(() => {
     }
   }
 }, 500);
+
+const isHover = e => e.parentElement.querySelector(":hover") === e;
