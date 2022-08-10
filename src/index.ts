@@ -1,10 +1,6 @@
 import "./style.css";
 import { UI } from "peasy-ui";
-import monster from "./assets/whitemonster.png";
 import card from "./assets/whitecard.png";
-import building from "./assets/whitebuilding.png";
-import effect from "./assets/whiteeffect.png";
-import user from "./assets/whiteuser.png";
 
 const myApp = document.getElementById("myApp");
 

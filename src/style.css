@@ -1,14 +1,8 @@
 /*style.css*/
 
 :root {
-  --game-width: 1280px;
-  --game-height: 720px;
   --background-start: #1e29f2;
   --background-end: #101f6b;
-  --angle1: 0;
-  --angle2: 0;
-  --angle3: 0;
-  --angle4: 0;
 }
 
 * {
@@ -50,14 +44,11 @@ button {
 }
 
 .toast_entry.pui-adding {
-  display: flex;
-  margin-bottom: 25px;
-  justify-content: flex-end;
   animation: slide-in-from-right 0.75s;
 }
 
 .toast_entry.pui-removing {
-  animation: slide-out-to-right 0.75s forwards;
+  animation: slide-out-to-right 0.75s;
 }
 
 @keyframes slide-in-from-right {
@@ -112,19 +103,6 @@ button {
   border-radius: 5px;
   box-shadow: 5px 5px 5px black;
   color: white;
-}
-
-.wide {
-  width: 100px;
-  border: 5px solid;
-  border-image: url("./assets/border.svg");
-  border-image-slice: 25;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px black;
-}
-
-.hidden {
-  display: none;
 }
 
 .toast_img {
